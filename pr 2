@@ -1,0 +1,93 @@
+choice = 1
+while (choice != 9):
+    print("MENU")
+    print("1.Add Elements into the set: ")
+    print("2.Remove Element from the set")
+    print("3.Checked if element is contained in list")
+    print("4.Size of list")
+    print("5.Intersection")
+    print("6.Union")
+    print("7.Difference of set")
+    print("8.Subset")
+    print("9.Exit")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        A = []
+        n = int(input("Enter number of elements in A: "))
+        for i in range(0, n):
+            ele = int(input("Enter the Element: "))
+            A.append(ele)
+        print(A)
+    if choice == 2:
+        delele = int(input("Enter element to be deleted: "))
+        A.remove(delele)
+        print(A)
+    if choice == 3:
+        searchele = int(input("Enter element to search in A: "))
+        if searchele in A:
+            print("Element found!!!")
+        else:
+            print("Element not in list.")
+    if choice == 4:
+        print(len(A))
+
+    if choice == 5:
+        B = []
+        n = int(input("Enter number of elements in B: "))
+        for i in range(0, n):
+            ele = int(input("Enter the Element: "))
+            B.append(ele)
+        C = []
+        for i in range(len(A)):
+            for j in range(len(B)):
+                if (A[i] == B[j]):
+                    C.append(B[j])
+        print(C)
+
+    if choice == 6:
+        B = []
+        n = int(input("Enter number of elements in B: "))
+        for i in range(0, n):
+            ele = int(input("Enter the Element: "))
+            B.append(ele)
+        D = []
+        for i in range(len(A)):
+            D.append(A[i])
+        for element in B:
+            if element not in D:
+                D.append(element)
+        print(D)
+
+    if choice == 7:
+        B = []
+        n = int(input("Enter number of elements in B: "))
+        for i in range(0, n):
+            ele = int(input("Enter the Element: "))
+            B.append(ele)
+        print("If you want difference of 1.A-B or 2.B-A? Write your option: ")
+        diff = int(input())
+        Z = []
+        if (diff == 1):
+            for element in A:
+                if element not in B:
+                    Z.append(element)
+            print(Z)
+        if (diff == 2):
+            for element in B:
+                if element not in A:
+                    Z.append(element)
+            print(Z)
+    if choice == 8:
+        list1 = []
+        n = int(input("Enter number of elements in sublist: "))
+        for i in range(0, n):
+            ele = int(input("Enter the Element: "))
+            list1.append(ele)
+        c = 0
+        for i in list1:
+            if i in A:
+                c += 1
+        if (c == len(list1)):
+            print("Sublist is present.")
+        else:
+            print("Sublist not present.")
