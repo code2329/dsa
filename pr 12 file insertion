@@ -1,0 +1,114 @@
+
+#include<iostream>
+#include <fstream>
+#include <string.h> 
+using namespace std;
+void delete_student()
+{
+fstream stud;
+fstream temp;
+stud.open("student.txt",ios::in);
+temp.open("temp.txt",ios::out);
+char name [25];
+char age[25];
+char phone [25];
+char a[25];
+cin.ignore();
+cout<<" \n\tEnter the phone number to delete record : "; 
+cin.getline(a,25);
+while(!stud.eof())
+{
+stud.getline(name,25,'|'); 
+stud.getline(phone,25,'|'); 
+stud.getline(age,25); 
+if(strcmp(phone,a)==0)
+{
+continue;
+}
+else
+{
+temp<< name<<'|'<<phone<<'|'<<age<<'\n';
+}
+}
+temp.close();
+stud.close();
+stud.open("student.txt",ios::out); 
+temp.open("temp.txt",ios::in); 
+while(!temp.eof())
+{
+temp.getline(name,25,'|');
+temp.getline(phone,25,'|');
+temp.getline(age,25);
+stud<< name<<'|'<<phone<<'|'<<age<<'\n'; 
+}
+temp.close();
+stud.close();
+remove("temp.txt");
+cout<<"\nDone !!! \n";
+}
+void display_all()
+{
+char name [25]; 
+char age[25]; 
+char phone [25];
+fstream stud; 
+stud.open("student.txt",ios::in);
+cout<< " \n\t Name \t Phone \t Age \n";
+while(!stud.eof())
+{
+stud.getline(name,25,'|'); 
+stud.getline(phone,25,'|'); 
+stud.getline(age,25);
+cout<< "\n \t "<< name << "\t"<<phone<<"\t"<<age<<endl;
+}
+}
+void insert_student() 
+{
+char name [25];
+char age[25];
+char phone [25];
+fstream stud;
+stud.open("student.txt", ios::app);
+cin.ignore();
+cout<<"\nName : ";
+cin.getline(name,25);
+cout<<"Phone No : ";
+cin.getline(phone,25);
+cout<<"Age : ";
+cin.getline(age,25);
+stud<< name<<'|'<<phone<<'|'<<age<<'\n';
+cout<<"Done !!\n";
+stud.close();
+}
+int main()
+{
+bool flag=true; 
+while (flag)
+{
+cout << "1.Insert\n2.Display\n3.Delete\nEnter your choice : "; 
+int c;
+cin>>c;
+switch (c)
+{
+case 1 : 
+insert_student(); 
+break;
+case 2:
+display_all(); 
+break;
+case 3:
+delete_student(); 
+break;
+default :
+cout << "\nPlease Enter Valid Choice !!\n";
+}
+cout <<"Do you want to continue? ' y ' "; 
+char f;
+cin>>f; 
+if(f!='y')
+{
+flag=false;
+}
+}
+return 0;
+}
